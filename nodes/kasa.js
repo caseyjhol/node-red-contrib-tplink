@@ -315,6 +315,12 @@ module.exports = function (RED) {
         case 'getMeterInfo':
           promise = device.emeter.getRealtime()
           break
+        case 'getMeterCurrentMonthDayStats':
+          promise = device.emeter.getDayStats(new Date().getFullYear(),new Date().getMonth()+1)
+          break
+        case 'getMeterLastMonthDayStats':
+          promise = device.emeter.getDayStats(new Date().getFullYear()-(new Date().getMonth()===1),((new Date().getMonth())-1)%12+1)
+          break
         case 'eraseStats':
           promise = device.emeter.eraseStats()
           break
